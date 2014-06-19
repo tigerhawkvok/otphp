@@ -47,8 +47,10 @@ class TOTP extends OTP implements TOTPInterface
     /**
      * {@inheritdoc}
      */
-    public function getProvisioningUri()
+    public function provisioningURI($label = null, $issuer = null)
     {
+        if($label !== null) $this->setLabel($label);
+        if($issuer !== null) $this->setIssuer($issuer);
         return $this->generateURI('totp', array('period'=>$this->getInterval()));
     }
 
